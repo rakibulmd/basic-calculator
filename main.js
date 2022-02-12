@@ -289,6 +289,10 @@ document.getElementById("btn-result").addEventListener("click", function () {
 		document.getElementById("calc-output").innerHTML =
 			parseFloat(num1Converted) * parseFloat(num2Converted);
 	}
+	if (operator[0] == "%") {
+		document.getElementById("calc-output").innerHTML =
+			parseFloat(num1Converted) / 100;
+	}
 	if (operator2[0] == "%") {
 		document.getElementById("calc-output").innerHTML =
 			parseFloat(document.getElementById("calc-output").innerHTML) / 100;
