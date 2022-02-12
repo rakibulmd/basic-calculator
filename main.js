@@ -131,6 +131,15 @@ document.getElementById("btn-multiply").addEventListener("click", function () {
 	}
 });
 
+document.getElementById("btn-eraseOne").addEventListener("click", function () {
+	let flow = document.getElementById("calc-flow").innerText;
+	console.log("tracking flow to remove", flow);
+	let newFlow = flow.slice(0, -1);
+	console.log("tracking flow to remove", newFlow);
+	document.getElementById("calc-flow").innerText = newFlow;
+});
+
+// Result Button
 document.getElementById("btn-result").addEventListener("click", function () {
 	let calcFlow = document.getElementById("calc-flow").innerText;
 	console.log(calcFlow);
