@@ -59,6 +59,7 @@ document.getElementById("btn-add").addEventListener("click", function () {
 		flow[flow.length - 1] != "+" &&
 		flow[flow.length - 1] != "-" &&
 		flow[flow.length - 1] != "/" &&
+		flow[flow.length - 1] != "%" &&
 		flow[flow.length - 1] != "*"
 	) {
 		addButton("btn-add");
@@ -68,6 +69,7 @@ document.getElementById("btn-add").addEventListener("click", function () {
 		flow[flow.length - 1] == "+" &&
 		flow[flow.length - 1] == "-" &&
 		flow[flow.length - 1] == "/" &&
+		flow[flow.length - 1] == "%" &&
 		flow[flow.length - 1] == "*"
 	) {
 	}
@@ -79,6 +81,7 @@ document.getElementById("btn-minus").addEventListener("click", function () {
 		flow[flow.length - 1] != "+" &&
 		flow[flow.length - 1] != "-" &&
 		flow[flow.length - 1] != "/" &&
+		flow[flow.length - 1] != "%" &&
 		flow[flow.length - 1] != "*"
 	) {
 		addButton("btn-minus");
@@ -88,6 +91,7 @@ document.getElementById("btn-minus").addEventListener("click", function () {
 		flow[flow.length - 1] == "+" &&
 		flow[flow.length - 1] == "-" &&
 		flow[flow.length - 1] == "/" &&
+		flow[flow.length - 1] == "%" &&
 		flow[flow.length - 1] == "*"
 	) {
 	}
@@ -98,6 +102,7 @@ document.getElementById("btn-divide").addEventListener("click", function () {
 		flow[flow.length - 1] != "+" &&
 		flow[flow.length - 1] != "-" &&
 		flow[flow.length - 1] != "/" &&
+		flow[flow.length - 1] != "%" &&
 		flow[flow.length - 1] != "*"
 	) {
 		addButton("btn-divide");
@@ -107,6 +112,7 @@ document.getElementById("btn-divide").addEventListener("click", function () {
 		flow[flow.length - 1] == "+" &&
 		flow[flow.length - 1] == "-" &&
 		flow[flow.length - 1] == "/" &&
+		flow[flow.length - 1] == "%" &&
 		flow[flow.length - 1] == "*"
 	) {
 	}
@@ -117,6 +123,7 @@ document.getElementById("btn-multiply").addEventListener("click", function () {
 		flow[flow.length - 1] != "+" &&
 		flow[flow.length - 1] != "-" &&
 		flow[flow.length - 1] != "/" &&
+		flow[flow.length - 1] != "%" &&
 		flow[flow.length - 1] != "*"
 	) {
 		addButton("btn-multiply");
@@ -126,10 +133,57 @@ document.getElementById("btn-multiply").addEventListener("click", function () {
 		flow[flow.length - 1] == "+" &&
 		flow[flow.length - 1] == "-" &&
 		flow[flow.length - 1] == "/" &&
+		flow[flow.length - 1] == "%" &&
 		flow[flow.length - 1] == "*"
 	) {
 	}
 });
+
+document.getElementById("btn-multiply").addEventListener("click", function () {
+	let flow = document.getElementById("calc-flow").innerText;
+	if (
+		flow[flow.length - 1] != "+" &&
+		flow[flow.length - 1] != "-" &&
+		flow[flow.length - 1] != "/" &&
+		flow[flow.length - 1] != "%" &&
+		flow[flow.length - 1] != "*"
+	) {
+		addButton("btn-multiply");
+		btnPress("btn-multiply");
+	}
+	if (
+		flow[flow.length - 1] == "+" &&
+		flow[flow.length - 1] == "-" &&
+		flow[flow.length - 1] == "/" &&
+		flow[flow.length - 1] == "%" &&
+		flow[flow.length - 1] == "*"
+	) {
+	}
+});
+
+document
+	.getElementById("btn-percentage")
+	.addEventListener("click", function () {
+		let flow = document.getElementById("calc-flow").innerText;
+		if (
+			flow[flow.length - 1] != "+" &&
+			flow[flow.length - 1] != "-" &&
+			flow[flow.length - 1] != "/" &&
+			flow[flow.length - 1] != "%" &&
+			flow[flow.length - 1] != "*"
+		) {
+			addButton("btn-percentage");
+			btnPress("btn-percentage");
+		}
+		if (
+			flow[flow.length - 1] == "+" &&
+			flow[flow.length - 1] == "-" &&
+			flow[flow.length - 1] == "/" &&
+			flow[flow.length - 1] == "%" &&
+			flow[flow.length - 1] == "*"
+		) {
+		}
+	});
 
 document.getElementById("btn-eraseOne").addEventListener("click", function () {
 	let flow = document.getElementById("calc-flow").innerText;
@@ -150,10 +204,22 @@ document.getElementById("btn-result").addEventListener("click", function () {
 	let operator2 = [];
 
 	for (let calc of calcFlow) {
-		if (calc != "+" && calc != "-" && calc != "/" && calc != "*") {
+		if (
+			calc != "+" &&
+			calc != "-" &&
+			calc != "/" &&
+			calc != "%" &&
+			calc != "*"
+		) {
 			num1.push(calc);
 		}
-		if (calc == "+" || calc == "-" || calc == "/" || calc == "*") {
+		if (
+			calc == "+" ||
+			calc == "-" ||
+			calc == "/" ||
+			calc == "%" ||
+			calc == "*"
+		) {
 			operator.push(calc);
 			break;
 		}
@@ -167,9 +233,14 @@ document.getElementById("btn-result").addEventListener("click", function () {
 			calcFlow[i] != "+" &&
 			calcFlow[i] != "-" &&
 			calcFlow[i] != "/" &&
+			calcFlow[i] != "%" &&
 			calcFlow[i] != "*"
 		) {
 			num2.push(calcFlow[i]);
+		}
+
+		if (calcFlow[i] == "%") {
+			operator2.push(calcFlow[i]);
 		}
 
 		if (
@@ -218,4 +289,10 @@ document.getElementById("btn-result").addEventListener("click", function () {
 		document.getElementById("calc-output").innerHTML =
 			parseFloat(num1Converted) * parseFloat(num2Converted);
 	}
+	if (operator2[0] == "%") {
+		document.getElementById("calc-output").innerHTML =
+			parseFloat(document.getElementById("calc-output").innerHTML) / 100;
+	}
+
+	console.log(document.getElementById("calc-output").innerText);
 });
