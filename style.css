@@ -16,9 +16,16 @@ body {
 	font-family: "Share Tech Mono", monospace;
 }
 
+body main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
 .calculator-body {
 	width: 300px;
-	margin: 50px auto;
+	margin: 0 auto;
 	background-color: var(--dark-bg-color);
 	color: var(--light-bg-color);
 	padding: 65px 12px 0px;
