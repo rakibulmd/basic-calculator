@@ -196,7 +196,8 @@ document.getElementById("btn-eraseOne").addEventListener("click", function () {
 // Result Button
 document.getElementById("btn-result").addEventListener("click", function () {
 	let calcFlow = document.getElementById("calc-flow").innerText;
-	console.log(calcFlow);
+	console.log("primary calcflow", calcFlow);
+	console.log(eval(calcFlow));
 
 	let num1 = [];
 	let operator = [];

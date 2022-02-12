@@ -30,6 +30,7 @@ body main {
 	color: var(--light-bg-color);
 	padding: 65px 12px 0px;
 	border-radius: 20px;
+	overflow: hidden;
 }
 
 .calculation-output {
